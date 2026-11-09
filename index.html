@@ -3,96 +3,639 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jisna Tomy's professional resume">
-    <title>Jisna Tomy | Resume</title>
+    <meta name="description" content="Jisna Tomy - Full-Stack & Software Developer Portfolio">
+    <title>Jisna Tomy | Software Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --page-bg: #0f172a;
+            --card-bg: #1e293b;
+            --navbar-bg: rgba(15, 23, 42, 0.92);
+            --primary: #38bdf8;
+            --primary-hover: #0284c7;
+            --primary-light: rgba(56, 189, 248, 0.12);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --line: #334155;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--page-bg);
+            color: var(--text-main);
+            font-family: "Jost", sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+        }
+
+        /* Navigation Header */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--navbar-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-avatar {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 44px;
+            line-height: 1.15;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .hero-title {
+            margin: 0 0 16px;
+            font-size: 20px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .hero-bio {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 24px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            background: #7dd3fc;
+            color: #0f172a;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--line);
+            background: var(--card-bg);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 50px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .section-header {
+            margin-bottom: 32px;
+        }
+
+        .section-header h2 {
+            font-size: 26px;
+            color: var(--primary);
+            margin: 0 0 8px;
+            font-weight: 700;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid var(--line);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .skill-card h3 {
+            margin: 0 0 14px;
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* Timeline / Cards (Experience & Education) */
+        .timeline-card {
+            background: var(--card-bg);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 28px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .timeline-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .timeline-role {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .timeline-company {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .timeline-date {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .timeline-body ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .timeline-body li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .timeline-body li::marker {
+            color: var(--primary);
+        }
+
+        /* Certifications List */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        .cert-card {
+            background: var(--card-bg);
+            border: 1px solid var(--line);
+            padding: 18px 22px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .cert-card:hover {
+            border-color: var(--primary);
+        }
+
+        .cert-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        .cert-issuer {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--line);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-link-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-link-item:hover {
+            color: var(--primary);
+        }
+
+        .footer-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 24px;
+                padding: 40px 0 40px;
+            }
+
+            .hero-bio {
+                margin: 0 auto 24px;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cert-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                gap: 14px;
+                font-size: 14px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <main class="resume">
-        <header class="resume-header">
-            <img class="profile-photo" src="JisnaTomy 1.jpg" alt="Jisna Tomy">
-            <div class="header-details">
+
+    <!-- Sticky Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <span class="brand-logo">Jisna Tomy</span>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero / About Section -->
+        <header id="about" class="hero">
+            <div class="hero-avatar">
+                <img class="profile-photo" src="JisnaTomy 1.jpg" alt="Jisna Tomy">
+            </div>
+            <div class="hero-text">
+                <p class="eyebrow">Full-Stack &amp; Software Developer</p>
                 <h1>Jisna Tomy</h1>
-                <p class="professional-title">Software Developer</p>
-                <address class="contact-details">
-                    <a href="jisna293@gmail.com">jisna293@gmail.com</a>
-                    <a href="+919544799855">9544799855</a>
-                    <span>Kochi, Kerala</span>
-                    <a href="https://github.com/j-i-s-n-a">Github</a>
-                    <a href="www.linkedin.com/in/jisna-tomy-25ba55254">LinkedIn</a>
-                </address>
+                <p class="hero-title">M.Sc. Computer Science Postgraduate · Kochi, Kerala</p>
+                <p class="hero-bio">
+                    Motivated computer science postgraduate with hands-on software development internship experience. Skilled in building reliable, responsive full-stack web applications with modern frontend and backend technologies. Eager to collaborate and scale modern web application environments.
+                </p>
+                <div class="hero-actions">
+                    <a href="mailto:jisna293@gmail.com" class="btn btn-primary">Get In Touch</a>
+                    <a href="https://github.com/j-i-s-n-a" target="_blank" class="btn btn-outline">GitHub</a>
+                    <a href="https://www.linkedin.com/in/jisna-tomy-25ba55254" target="_blank" class="btn btn-outline">LinkedIn</a>
+                </div>
             </div>
         </header>
 
-        <section class="resume-section">
-            <h2>Professional Summary</h2>
-            <p>Motivated computer science postgraduate with internship experience in software development. Interested in building reliable, user-friendly applications and contributing to collaborative development teams. Eager to continue learning and grow as a full-stack developer.</p>
-        </section>
-
-        <section class="resume-section">
-            <h2>Experience</h2>
-            <article class="experience-item">
-                <div class="item-heading">
-                    <div>
-                        <h3>Lidex India Pvt. Ltd.</h3>
-                        <p class="item-subtitle">Software Developer Intern · Kozhikode, Kerala</p>
-                    </div>
-                    <p class="item-date">Nov 2022 – May 2023</p>
-                </div>
-                <ul>
-                    <li>Built responsive and interactive ERP user-interface pages using Angular.</li>
-                    <li>Developed server-side logic and APIs using Python and Django.</li>
-                    <li>Worked with MongoDB to store and retrieve inventory, order, and ERP data.</li>
-                    <li>Integrated RESTful APIs to connect application features and improve system functionality.</li>
-                </ul>
-            </article>
-        </section>
-
-        <section class="resume-section">
-            <h2>Technical Skills</h2>
+        <!-- Technical Skills -->
+        <section id="skills">
+            <div class="section-header">
+                <h2>Technical Toolkit</h2>
+            </div>
             <div class="skills-grid">
-                <div class="skill-group"><h3>Frameworks</h3><p>Angular, Django</p></div>
-                <div class="skill-group"><h3>Languages</h3><p>JavaScript, TypeScript, HTML, CSS, Python</p></div>
-                <div class="skill-group"><h3>Database</h3><p>MongoDB</p></div>
-                <div class="skill-group"><h3>Version Control</h3><p>Git, GitHub</p></div>
-                <div class="skill-group"><h3>Tools</h3><p>Microsoft Word, Microsoft PowerPoint</p></div>
+                <div class="skill-card">
+                    <h3>Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Angular</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">React</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Database &amp; Tools</h3>
+                    <div class="skill-tags">
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">Git</span>
+                        <span class="tag">GitHub</span>
+                        <span class="tag">REST APIs</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="resume-section">
-            <h2>Education</h2>
-            <article class="education-item">
-                <div class="item-heading">
-                    <div><h3>Master of Science in Computer Science</h3><p class="item-subtitle">Mahatma Gandhi University · Ernakulam, Kerala</p></div>
-                    <p class="item-date">Mar 2020 – Jun 2022</p>
+        <!-- Professional Experience -->
+        <section id="experience">
+            <div class="section-header">
+                <h2>Work Experience</h2>
+            </div>
+            <article class="timeline-card">
+                <div class="timeline-header">
+                    <div>
+                        <h3 class="timeline-role">Software Developer Intern</h3>
+                        <div class="timeline-company">Lidex India Pvt. Ltd. · Kozhikode, Kerala</div>
+                    </div>
+                    <span class="timeline-date">Nov 2022 – May 2023</span>
                 </div>
-            </article>
-            <article class="education-item">
-                <div class="item-heading">
-                    <div><h3>Bachelor of Science in Mathematics</h3><p class="item-subtitle">Mahatma Gandhi University · Ernakulam, Kerala</p></div>
-                    <p class="item-date">Mar 2017 – Mar 2020</p>
+                <div class="timeline-body">
+                    <ul>
+                        <li>Built responsive and interactive ERP user-interface components and pages using Angular.</li>
+                        <li>Developed backend server-side logic and modular APIs leveraging Python and Django.</li>
+                        <li>Designed database query workflows with MongoDB to reliably manage inventory, orders, and core ERP data models.</li>
+                        <li>Integrated RESTful Web APIs to connect frontend modular interfaces with backend microservices.</li>
+                    </ul>
                 </div>
             </article>
         </section>
 
-        <section class="resume-section">
-            <h2>Certifications</h2>
-            <ul class="certification-list">
-                <li><span>IBM Full Stack Software Developer Professional Certificate</span><span class="item-date">Coursera · Dec 2025 – Jun 2026</span></li>
-                <li><span>Certified Software Developer (Internship)</span><span class="item-date">Lidex India Pvt. Ltd. · Nov 2022 – May 2023</span></li>
-                <li><span>React JS Internship Certificate</span><span class="item-date">Techbyheart India Pvt. Ltd. · Apr 2022</span></li>
-                <li><span>MongoDB Introduction Course</span><span class="item-date">MongoDB University · Nov 2022</span></li>
-                <li><span>Python Programming Certificate</span><span class="item-date">Spoken Tutorial</span></li>
-            </ul>
+        <!-- Education -->
+        <section id="education">
+            <div class="section-header">
+                <h2>Education</h2>
+            </div>
+            <article class="timeline-card">
+                <div class="timeline-header">
+                    <div>
+                        <h3 class="timeline-role">Master of Science in Computer Science</h3>
+                        <div class="timeline-company">Mahatma Gandhi University · Ernakulam, Kerala</div>
+                    </div>
+                    <span class="timeline-date">Mar 2020 – Jun 2022</span>
+                </div>
+            </article>
+            <article class="timeline-card">
+                <div class="timeline-header">
+                    <div>
+                        <h3 class="timeline-role">Bachelor of Science in Mathematics</h3>
+                        <div class="timeline-company">Mahatma Gandhi University · Ernakulam, Kerala</div>
+                    </div>
+                    <span class="timeline-date">Mar 2017 – Mar 2020</span>
+                </div>
+            </article>
         </section>
 
-        <section class="resume-section">
-            <h2>Languages</h2>
-            <p>English <span class="language-separator">•</span> Malayalam</p>
+        <!-- Certifications -->
+        <section id="certifications">
+            <div class="section-header">
+                <h2>Certifications</h2>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div>
+                        <div class="cert-title">IBM Full Stack Developer Certificate</div>
+                        <div class="cert-issuer">Coursera</div>
+                    </div>
+                    <span class="timeline-date">Dec 2025 – Jun 2026</span>
+                </div>
+                <div class="cert-card">
+                    <div>
+                        <div class="cert-title">Certified Software Developer (Internship)</div>
+                        <div class="cert-issuer">Lidex India Pvt. Ltd.</div>
+                    </div>
+                    <span class="timeline-date">Nov 2022 – May 2023</span>
+                </div>
+                <div class="cert-card">
+                    <div>
+                        <div class="cert-title">React JS Internship Certificate</div>
+                        <div class="cert-issuer">Techbyheart India Pvt. Ltd.</div>
+                    </div>
+                    <span class="timeline-date">Apr 2022</span>
+                </div>
+                <div class="cert-card">
+                    <div>
+                        <div class="cert-title">MongoDB Introduction Course</div>
+                        <div class="cert-issuer">MongoDB University</div>
+                    </div>
+                    <span class="timeline-date">Nov 2022</span>
+                </div>
+                <div class="cert-card">
+                    <div>
+                        <div class="cert-title">Python Programming Certificate</div>
+                        <div class="cert-issuer">Spoken Tutorial</div>
+                    </div>
+                    <span class="timeline-date">Mar 2022</span>
+                </div>
+            </div>
         </section>
-    </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <!-- Email Icon & Link -->
+                <a href="mailto:jisna293@gmail.com" class="footer-link-item">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <span>jisna293@gmail.com</span>
+                </a>
+
+                <!-- Phone Icon & Link -->
+                <a href="tel:+919544799855" class="footer-link-item">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                    <span>+91 9544799855</span>
+                </a>
+
+                <!-- GitHub Icon & Link -->
+                <a href="https://github.com/j-i-s-n-a" target="_blank" class="footer-link-item">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+
+                <!-- LinkedIn Icon & Link -->
+                <a href="https://www.linkedin.com/in/jisna-tomy-25ba55254" target="_blank" class="footer-link-item">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.7a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+            <p>© Jisna Tomy · Languages: English &amp; Malayalam</p>
+        </div>
+    </footer>
+
 </body>
 </html>
